@@ -4,6 +4,7 @@ import { TextInputBuilder, TextInputStyle } from 'discord.js';
 
 const modals = {
   feedback: new ModalBuilder()
+    .setTitle('意見回饋')
     .setCustomId('feedback:feedback')
     .addComponents(new ActionRowBuilder<TextInputBuilder>()
       .addComponents(new TextInputBuilder()
