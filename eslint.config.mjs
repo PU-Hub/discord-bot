@@ -1,10 +1,10 @@
-import globals from 'globals';
-import eslint from '@eslint/js';
-import stylistic from '@stylistic/eslint-plugin';
-import tseslint from 'typescript-eslint';
+import globals from "globals";
+import eslint from "@eslint/js";
+import stylistic from "@stylistic/eslint-plugin";
+import tseslint from "typescript-eslint";
 
 export default tseslint.config(
-  { files: ['/src/**/*.{js,mjs,cjs,ts}'] },
+  { files: ["/src/**/*.{js,mjs,cjs,ts}"] },
   { languageOptions: { globals: globals.browser } },
   eslint.configs.recommended,
   stylistic.configs.customize({
@@ -20,5 +20,5 @@ export default tseslint.config(
         tsconfigRootDir: import.meta.dirname,
       },
     },
-  },
+  }
 );
