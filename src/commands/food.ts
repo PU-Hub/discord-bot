@@ -9,5 +9,5 @@ export default new Command({
     .setDescriptionLocalization('zh-TW', '不知道今天要吃什麼嗎？就讓我來挑吧'),
   defer: true,
   ephemeral: true,
-  async execute(interaction) {},
+  async execute() {},
 });

@@ -47,7 +47,8 @@ export class ExtendedClient extends Client {
       const filePath = resolve(this.cacheFolderPath, 'commands.cache');
 
       if (existsSync(filePath)) {
-        if (!force && readFileSync(filePath, { encoding: 'utf8' }) == hash) return;
+        if (!force && readFileSync(filePath, { encoding: 'utf8' }) == hash)
+          return;
       }
 
       if (process.env.NODE_ENV == 'development') {
