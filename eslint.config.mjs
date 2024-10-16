@@ -39,17 +39,7 @@ export default tseslint.config(
         'warn',
         { ignoreChainWithDepth: 1 },
       ],
-      '@stylistic/key-spacing': [
-        'warn',
-        {
-          align: {
-            beforeColon : true,
-            afterColon  : true,
-            on          : 'colon',
-            mode        : 'strict',
-          },
-        },
-      ],
+      '@stylistic/key-spacing'             : ['warn'],
       '@stylistic/eol-last'                : ['warn'],
       '@stylistic/indent'                  : ['warn'],
       '@stylistic/no-trailing-spaces'      : ['warn'],
