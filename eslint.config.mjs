@@ -1,18 +1,19 @@
-import globals from 'globals';
 import eslint from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
 import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
-  { files: ['/src/**/*.{js,mjs,cjs,ts}'] },
-  { languageOptions: { globals: globals.browser } },
+  {
+    files: ['/src/**/*.{js,mjs,cjs,ts}'],
+  },
   eslint.configs.recommended,
   stylistic.configs.customize({
     semi        : true,
     indent      : 2,
     arrowParens : true,
   }),
-  ...tseslint.configs.recommendedTypeChecked,
+  ...tseslint.configs.stylisticTypeChecked,
+  ...tseslint.configs.strictTypeChecked,
   {
     languageOptions: {
       parserOptions: {
@@ -23,25 +24,37 @@ export default tseslint.config(
   },
   {
     rules: {
-      '@stylistic/operator-linebreak': ['warn', 'after', {
-        overrides: {
-          '?'  : 'none',
-          ':'  : 'before',
-          '||' : 'before',
-          '&&' : 'before',
+      '@stylistic/operator-linebreak': [
+        'warn', 'after',
+        {
+          overrides: {
+            '?'  : 'none',
+            ':'  : 'before',
+            '||' : 'before',
+            '&&' : 'before',
+          },
         },
-      }],
-      '@stylistic/newline-per-chained-call' : ['warn', { ignoreChainWithDepth: 1 }],
-      '@stylistic/key-spacing'              : ['warn', {
-        align: {
-          beforeColon : true,
-          afterColon  : true,
-          on          : 'colon',
-          mode        : 'strict',
+      ],
+      '@stylistic/newline-per-chained-call': [
+        'warn',
+        { ignoreChainWithDepth: 1 },
+      ],
+      '@stylistic/key-spacing': [
+        'warn',
+        {
+          align: {
+            beforeColon : true,
+            afterColon  : true,
+            on          : 'colon',
+            mode        : 'strict',
+          },
         },
-      }],
-      '@typescript-eslint/no-unused-vars': ['warn'],
-
+      ],
+      '@stylistic/eol-last'                : ['warn'],
+      '@stylistic/indent'                  : ['warn'],
+      '@stylistic/no-trailing-spaces'      : ['warn'],
+      '@stylistic/no-multiple-empty-lines' : ['warn'],
+      '@typescript-eslint/no-unused-vars'  : ['warn'],
     },
   },
 );

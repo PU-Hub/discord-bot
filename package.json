@@ -12,7 +12,7 @@
     "chalk": "^5.3.0",
     "discord.js": "^14.16.3",
     "dotenv": "^16.4.5",
-    "drizzle-orm": "^0.34.1"
+    "drizzle-orm": "^0.35.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.12.0",
@@ -22,13 +22,13 @@
     "@rollup/plugin-typescript": "^12.1.0",
     "@stylistic/eslint-plugin": "^2.9.0",
     "@types/bun": "latest",
-    "drizzle-kit": "^0.25.0",
+    "@types/eslint__js": "^8.42.3",
+    "drizzle-kit": "^0.26.1",
     "eslint": "^9.12.0",
-    "globals": "^15.11.0",
     "prettier": "^3.3.3",
     "rollup": "^4.24.0",
     "tsx": "^4.19.1",
-    "typescript-eslint": "^8.8.1"
+    "typescript-eslint": "^8.9.0"
   },
   "peerDependencies": {
     "typescript": "^5.6.3"
