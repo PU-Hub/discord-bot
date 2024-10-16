@@ -11,4 +11,6 @@ const options = {
 const client = new ExtendedClient(options);
 
 client.login(process.env.TOKEN)
-  .catch(console.error);
+  .catch((e: unknown) => {
+    console.error(e);
+  });

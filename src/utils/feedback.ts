@@ -60,10 +60,12 @@ export const withFeedbackButton = (
   },
   async onModalSubmit(interaction, id) {
     if (id == 'commandFeedback') {
-      const title = interaction.fields
-        .getTextInputValue('commandFeedback:title');
-      const content = interaction.fields
-        .getTextInputValue('commandFeedback:content');
+      const title = interaction.fields.getTextInputValue(
+        'commandFeedback:title',
+      );
+      const content = interaction.fields.getTextInputValue(
+        'commandFeedback:content',
+      );
 
       const embed = new EmbedBuilder()
         .setDescription('謝謝你的填寫，我們已經收到您的回饋')
