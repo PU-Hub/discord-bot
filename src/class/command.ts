@@ -37,10 +37,10 @@ interface CommandHandlers {
 }
 
 export interface CommandOptions extends CommandHandlers {
-  builder   : SharedSlashCommand;
-  defer     : boolean;
+  builder: SharedSlashCommand;
+  defer: boolean;
   ephemeral: boolean;
-  modals?   : Record<string, ModalBuilder>;
+  modals?: Record<string, ModalBuilder>;
 }
 
 export interface SubCommand extends CommandHandlers {
@@ -48,10 +48,10 @@ export interface SubCommand extends CommandHandlers {
 }
 
 export class Command {
-  builder   : SharedSlashCommand;
-  defer     : boolean;
+  builder: SharedSlashCommand;
+  defer: boolean;
   ephemeral: boolean;
-  modals?   : Record<string, ModalBuilder>;
+  modals?: Record<string, ModalBuilder>;
   execute: (
     this: ExtendedClient,
     interaction: ChatInputCommandInteraction<'cached'>

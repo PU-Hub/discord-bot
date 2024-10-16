@@ -10,8 +10,8 @@ export const menu = sqliteTable('menu', {
     .notNull(),
   description: text('description')
     .notNull(),
-  imageUrl    : text('imageUrl'),
-  price       : integer('price'),
-  recommended : integer('recommended', { mode: 'boolean' })
+  imageUrl: text('imageUrl'),
+  price: integer('price'),
+  recommended: integer('recommended', { mode: 'boolean' })
     .default(false),
 });

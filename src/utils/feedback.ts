@@ -48,10 +48,10 @@ const fModal = (command: CommandOptions) =>
 export const withFeedbackButton = (
   command: CommandOptions,
 ): CommandOptions => ({
-  builder   : command.builder,
-  defer     : command.defer,
-  ephemeral : command.ephemeral,
-  execute   : command.execute,
+  builder: command.builder,
+  defer: command.defer,
+  ephemeral: command.ephemeral,
+  execute: command.execute,
 
   modals: {
     ...command.modals,
@@ -64,7 +64,7 @@ export const withFeedbackButton = (
       return;
     }
 
-    command?.onButton?.call(this, interaction, id);
+    command.onButton?.call(this, interaction, id);
   },
   async onModalSubmit(interaction, id) {
     if (id == 'commandFeedback') {
@@ -90,8 +90,8 @@ export const withFeedbackButton = (
         embeds: [
           new EmbedBuilder()
             .setAuthor({
-              name    : interaction.user.tag,
-              iconURL : interaction.user.displayAvatarURL(),
+              name: interaction.user.tag,
+              iconURL: interaction.user.displayAvatarURL(),
             })
             .setTitle(title)
             .setDescription(content)
@@ -100,12 +100,12 @@ export const withFeedbackButton = (
       });
 
       await interaction.followUp({
-        embeds    : [embed],
-        ephemeral : true,
+        embeds: [embed],
+        ephemeral: true,
       });
       return;
     }
 
-    command?.onModalSubmit?.call(this, interaction, id);
+    command.onModalSubmit?.call(this, interaction, id);
   },
 });

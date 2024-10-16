@@ -41,9 +41,9 @@ export default new Command(
       .setNameLocalization('zh-TW', '問題回饋')
       .setDescription('Report bug or give feedback')
       .setDescriptionLocalization('zh-TW', '提交問題回報或意見回饋'),
-    defer     : true,
-    ephemeral : true,
-    modals    : feedbackModals,
+    defer: true,
+    ephemeral: true,
+    modals: feedbackModals,
     async execute(interaction) {
       await interaction.showModal(feedbackModals.feedback);
     },
@@ -65,8 +65,8 @@ export default new Command(
         embeds: [
           new EmbedBuilder()
             .setAuthor({
-              name    : interaction.user.tag,
-              iconURL : interaction.user.displayAvatarURL(),
+              name: interaction.user.tag,
+              iconURL: interaction.user.displayAvatarURL(),
             })
             .setTitle(title)
             .setDescription(content)
@@ -75,9 +75,9 @@ export default new Command(
       });
 
       await interaction.followUp({
-        embeds     : [embed],
-        components : [fButtonRow('feedback')],
-        ephemeral  : true,
+        embeds: [embed],
+        components: [fButtonRow('feedback')],
+        ephemeral: true,
       });
     },
   }),

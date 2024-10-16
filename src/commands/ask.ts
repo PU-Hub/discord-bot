@@ -52,23 +52,23 @@ export default new Command(
           .setDescription('關你你想發問的題目類型')
           .addChoices(
             {
-              name  : '關於學校',
-              value : 'school',
+              name: '關於學校',
+              value: 'school',
             },
             {
-              name  : '關於課業',
-              value : 'class',
+              name: '關於課業',
+              value: 'class',
             },
             {
-              name  : '其他',
-              value : 'other',
+              name: '其他',
+              value: 'other',
             },
           )
           .setRequired(true),
       ),
 
-    defer     : true,
-    ephemeral : true,
+    defer: true,
+    ephemeral: true,
     async execute(interaction) {
       qType = interaction.options.getString('type', true);
       await interaction.showModal(askModals.ask);
@@ -82,9 +82,9 @@ export default new Command(
         .setColor(Colors.DarkGreen);
 
       await interaction.followUp({
-        embeds     : [embed],
-        components : [fButtonRow('ask')],
-        ephemeral  : true,
+        embeds: [embed],
+        components: [fButtonRow('ask')],
+        ephemeral: true,
       });
     },
   }),

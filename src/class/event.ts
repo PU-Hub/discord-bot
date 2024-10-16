@@ -5,7 +5,7 @@ type Events = keyof ClientEvents;
 
 export interface EventHandlerOptions<Event extends Events = Events> {
   event: Event;
-  on?   : (this: ExtendedClient, ...args: ClientEvents[Event]) => Awaitable<void>;
+  on?: (this: ExtendedClient, ...args: ClientEvents[Event]) => Awaitable<void>;
   once?: (
     this: ExtendedClient,
     ...args: ClientEvents[Event]
@@ -14,7 +14,7 @@ export interface EventHandlerOptions<Event extends Events = Events> {
 
 export class EventHandler<Event extends Events = Events> {
   event: Event;
-  on?   : (this: ExtendedClient, ...args: ClientEvents[Event]) => Awaitable<void>;
+  on?: (this: ExtendedClient, ...args: ClientEvents[Event]) => Awaitable<void>;
   once?: (
     this: ExtendedClient,
     ...args: ClientEvents[Event]
