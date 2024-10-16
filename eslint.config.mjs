@@ -55,6 +55,8 @@ export default tseslint.config(
       '@stylistic/no-trailing-spaces'      : ['warn'],
       '@stylistic/no-multiple-empty-lines' : ['warn'],
       '@typescript-eslint/no-unused-vars'  : ['warn'],
+
+      '@typescript-eslint/restrict-template-expressions': ['off'],
     },
   },
 );
