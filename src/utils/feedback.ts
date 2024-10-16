@@ -12,43 +12,46 @@ import {
 import type { CommandOptions } from '@/class/command';
 
 export const fButtonRow = (command: string) =>
-  new ActionRowBuilder<ButtonBuilder>().addComponents(
-    new ButtonBuilder()
-      .setCustomId(`${command}:feedbackButton`)
-      .setLabel('問題回報')
-      .setStyle(ButtonStyle.Secondary),
-  );
+  new ActionRowBuilder<ButtonBuilder>()
+    .addComponents(
+      new ButtonBuilder()
+        .setCustomId(`${command}:feedbackButton`)
+        .setLabel('問題回報')
+        .setStyle(ButtonStyle.Secondary),
+    );
 
 const fModal = (command: CommandOptions) =>
   new ModalBuilder()
     .setTitle('意見回饋')
     .setCustomId(`${command.builder.name}:commandFeedback`)
     .addComponents(
-      new ActionRowBuilder<TextInputBuilder>().addComponents(
-        new TextInputBuilder()
-          .setLabel('標題')
-          .setCustomId('commandFeedback:title')
-          .setStyle(TextInputStyle.Short)
-          .setRequired(true),
-      ),
+      new ActionRowBuilder<TextInputBuilder>()
+        .addComponents(
+          new TextInputBuilder()
+            .setLabel('標題')
+            .setCustomId('commandFeedback:title')
+            .setStyle(TextInputStyle.Short)
+            .setRequired(true),
+        ),
     )
     .addComponents(
-      new ActionRowBuilder<TextInputBuilder>().addComponents(
-        new TextInputBuilder()
-          .setLabel('內容')
-          .setCustomId('commandFeedback:content')
-          .setStyle(TextInputStyle.Paragraph)
-          .setRequired(true),
-      ),
+      new ActionRowBuilder<TextInputBuilder>()
+        .addComponents(
+          new TextInputBuilder()
+            .setLabel('內容')
+            .setCustomId('commandFeedback:content')
+            .setStyle(TextInputStyle.Paragraph)
+            .setRequired(true),
+        ),
     );
 
 export const withFeedbackButton = (
   command: CommandOptions,
 ): CommandOptions => ({
-  builder: command.builder,
-  defer: command.defer,
-  ephemeral: command.ephemeral,
-  execute: command.execute,
+  builder   : command.builder,
+  defer     : command.defer,
+  ephemeral : command.ephemeral,
+  execute   : command.execute,
 
   modals: {
     ...command.modals,
@@ -87,17 +90,18 @@ export const withFeedbackButton = (
         embeds: [
           new EmbedBuilder()
             .setAuthor({
-              name: interaction.user.tag,
-              iconURL: interaction.user.displayAvatarURL(),
+              name    : interaction.user.tag,
+              iconURL : interaction.user.displayAvatarURL(),
             })
             .setTitle(title)
-            .setDescription(content).setTimestamp(),
+            .setDescription(content)
+            .setTimestamp(),
         ],
       });
 
       await interaction.followUp({
-        embeds: [embed],
-        ephemeral: true,
+        embeds    : [embed],
+        ephemeral : true,
       });
       return;
     }

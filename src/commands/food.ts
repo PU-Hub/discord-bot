@@ -7,7 +7,7 @@ export default new Command({
     .setNameLocalization('zh-TW', '吃啥')
     .setDescription('Random a food')
     .setDescriptionLocalization('zh-TW', '不知道今天要吃什麼嗎？就讓我來挑吧'),
-  defer: true,
-  ephemeral: true,
+  defer     : true,
+  ephemeral : true,
   async execute() {},
 });

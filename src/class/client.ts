@@ -42,7 +42,9 @@ export class ExtendedClient extends Client {
 
     try {
       const data = this.commands.map((v) => v.builder.toJSON());
-      const hash = createHash('md5').update(JSON.stringify(data)).digest('hex');
+      const hash = createHash('md5')
+        .update(JSON.stringify(data))
+        .digest('hex');
 
       const filePath = resolve(this.cacheFolderPath, 'commands.cache');
 
