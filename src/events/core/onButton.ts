@@ -13,12 +13,6 @@ export default new EventHandler({
     if (!command) return;
     if (!command.onButton) return;
 
-    if (command.defer && !command.modals) {
-      await interaction.deferReply({
-        ephemeral: command.ephemeral,
-      });
-    }
-
     await command.onButton.call(this, interaction, buttonId);
   },
 });

@@ -6,12 +6,9 @@ import {
   SlashCommandStringOption,
 } from 'discord.js';
 import { Command } from '@/class/command';
-import { withFeedbackButton } from '@/utils/feedback';
+import { latexToImage } from '@/utils/latex';
 
-interface LatexResponse {
-  imageUrl: string;
-  error: unknown;
-}
+import logger from '@/class/logger';
 
 const inputOption = new SlashCommandStringOption()
   .setName('input')
@@ -23,26 +20,20 @@ export default new Command({
     .setName('latex')
     .setDescription('Latex')
     .addStringOption(inputOption),
-  ephemeral: false,
-  defer: true,
   async execute(interaction) {
+    await interaction.deferReply();
+
     const input = interaction.options.getString('input', true);
 
-    const body = {
-      latexInput: `\\begin{align*}\n${input}\n\\end{align*}\n`,
-      outputFormat: 'PNG',
-      outputScale: '125%',
-    };
+    try {
+      const image = await latexToImage(input);
 
-    const response = await fetch(
-      'https://e1kf0882p7.execute-api.us-east-1.amazonaws.com/default/latex2image',
-      {
-        method: 'POST',
-        body: JSON.stringify(body),
-      },
-    );
-
-    if (!response.ok) {
+      await interaction.editReply({
+        files: [new AttachmentBuilder(image)],
+      });
+    }
+    catch (error) {
+      logger.error(`Failed to convert LaTex to Image`, input, error);
       await interaction.editReply({
         embeds: [
           new EmbedBuilder()
@@ -52,13 +43,6 @@ export default new Command({
             ),
         ],
       });
-      return;
     }
-
-    const data = (await response.json()) as LatexResponse;
-
-    await interaction.editReply({
-      files: [new AttachmentBuilder(data.imageUrl)],
-    });
   },
 });

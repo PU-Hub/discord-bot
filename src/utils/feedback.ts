@@ -49,15 +49,7 @@ export const withFeedbackButton = (
   command: CommandOptions,
 ): CommandOptions => ({
   builder: command.builder,
-  defer: command.defer,
-  ephemeral: command.ephemeral,
   execute: command.execute,
-
-  modals: {
-    ...command.modals,
-    commandfeedback: fModal(command),
-  },
-
   async onButton(interaction, id) {
     if (id == 'feedbackButton') {
       await interaction.showModal(fModal(command));
@@ -68,15 +60,11 @@ export const withFeedbackButton = (
   },
   async onModalSubmit(interaction, id) {
     if (id == 'commandFeedback') {
-      if (!command.defer) {
-        await interaction.deferUpdate();
-      }
-      const title = interaction.fields.getTextInputValue(
-        'commandFeedback:title',
-      );
-      const content = interaction.fields.getTextInputValue(
-        'commandFeedback:content',
-      );
+      const title = interaction.fields
+        .getTextInputValue('commandFeedback:title');
+      const content = interaction.fields
+        .getTextInputValue('commandFeedback:content');
+
       const embed = new EmbedBuilder()
         .setDescription('謝謝你的填寫，我們已經收到您的回饋')
         .setColor(Colors.Blue);

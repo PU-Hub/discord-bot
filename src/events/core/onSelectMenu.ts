@@ -13,10 +13,6 @@ export default new EventHandler({
     if (!command) return;
     if (!command.onSelectMenu) return;
 
-    if (command.defer) {
-      await interaction.deferUpdate();
-    }
-
     await command.onSelectMenu.call(this, interaction, menuId);
   },
 });

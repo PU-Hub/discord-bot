@@ -66,9 +66,6 @@ export default new Command(
           )
           .setRequired(true),
       ),
-
-    defer: true,
-    ephemeral: true,
     async execute(interaction) {
       qType = interaction.options.getString('type', true);
       await interaction.showModal(askModals.ask);

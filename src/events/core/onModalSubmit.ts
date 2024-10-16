@@ -13,10 +13,6 @@ export default new EventHandler({
     if (!command) return;
     if (!command.onModalSubmit) return;
 
-    if (command.defer) {
-      await interaction.deferUpdate();
-    }
-
     await command.onModalSubmit.call(this, interaction, modalId);
   },
 });

@@ -41,9 +41,6 @@ export default new Command(
       .setNameLocalization('zh-TW', '問題回饋')
       .setDescription('Report bug or give feedback')
       .setDescriptionLocalization('zh-TW', '提交問題回報或意見回饋'),
-    defer: true,
-    ephemeral: true,
-    modals: feedbackModals,
     async execute(interaction) {
       await interaction.showModal(feedbackModals.feedback);
     },

@@ -8,8 +8,6 @@ export default new Command(
     builder: new SlashCommandBuilder()
       .setName('ping')
       .setDescription('Check bot latency'),
-    defer: false,
-    ephemeral: true,
     async execute(interaction) {
       const embed = new EmbedBuilder()
         .setColor(Colors.Blue)
@@ -27,6 +25,7 @@ export default new Command(
       const sent = await interaction.reply({
         content: 'Pong! 🏓',
         embeds: [embed],
+        ephemeral: true,
         fetchReply: true,
       });
 

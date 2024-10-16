@@ -7,7 +7,7 @@ import type {
   ChatInputCommandInteraction,
   ModalSubmitInteraction,
 } from 'discord.js';
-import type { ModalBuilder, SharedSlashCommand } from '@discordjs/builders';
+import type { SharedSlashCommand } from '@discordjs/builders';
 import type { ExtendedClient } from '@/class/client';
 
 interface CommandHandlers {
@@ -38,20 +38,10 @@ interface CommandHandlers {
 
 export interface CommandOptions extends CommandHandlers {
   builder: SharedSlashCommand;
-  defer: boolean;
-  ephemeral: boolean;
-  modals?: Record<string, ModalBuilder>;
-}
-
-export interface SubCommand extends CommandHandlers {
-  builder: SharedSlashCommand;
 }
 
 export class Command {
   builder: SharedSlashCommand;
-  defer: boolean;
-  ephemeral: boolean;
-  modals?: Record<string, ModalBuilder>;
   execute: (
     this: ExtendedClient,
     interaction: ChatInputCommandInteraction<'cached'>
@@ -82,9 +72,6 @@ export class Command {
 
   constructor(options: CommandOptions) {
     this.builder = options.builder;
-    this.defer = options.defer;
-    this.ephemeral = options.ephemeral;
-    this.modals = options.modals;
     this.execute = options.execute;
     this.onAutocomplete = options.onAutocomplete;
     this.onButton = options.onButton;
