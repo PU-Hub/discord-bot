@@ -1,0 +1,8 @@
+{
+	"defer": {
+	"prefix": "defer",
+		"body": [
+			"await interaction.deferReply()",
+		]
+	}
+}

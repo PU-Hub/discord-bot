@@ -7,6 +7,7 @@ import {
 } from 'discord.js';
 import { Command } from '@/class/command';
 import { latexToImage } from '@/utils/latex';
+import { fButtonRow, withFeedbackButton } from '@/utils/feedback';
 
 import logger from '@/class/logger';
 
@@ -15,7 +16,7 @@ const inputOption = new SlashCommandStringOption()
   .setDescription('Accepts LaTex syntax and regular math operators.')
   .setRequired(true);
 
-export default new Command({
+export default new Command(withFeedbackButton({
   builder: new SlashCommandBuilder()
     .setName('latex')
     .setDescription('Latex')
@@ -30,6 +31,7 @@ export default new Command({
 
       await interaction.editReply({
         files: [new AttachmentBuilder(image)],
+        components: [fButtonRow('latex')],
       });
     }
     catch (error) {
@@ -42,7 +44,8 @@ export default new Command({
               '❌ 轉換圖片時發生錯誤，請確保你的語法正確並再試一次',
             ),
         ],
+        components: [fButtonRow('latex')],
       });
     }
   },
-});
+}));

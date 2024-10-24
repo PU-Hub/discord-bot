@@ -45,6 +45,8 @@ export default new Command(
       await interaction.showModal(feedbackModals.feedback);
     },
     async onModalSubmit(interaction) {
+      await interaction.deferReply();
+
       const title = interaction.fields.getTextInputValue('feedback:title');
       const content = interaction.fields.getTextInputValue('feedback:content');
 

@@ -89,7 +89,7 @@ export const withFeedbackButton = (
         ],
       });
 
-      await interaction.followUp({
+      await interaction.reply({
         embeds: [embed],
         ephemeral: true,
       });
