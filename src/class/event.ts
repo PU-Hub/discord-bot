@@ -1,4 +1,4 @@
-import type { Awaitable, ClientEvents } from 'discord.js';
+import type { Awaitable, ClientEvents, ButtonInteraction } from 'discord.js';
 import type { ExtendedClient } from '@/class/client';
 
 type Events = keyof ClientEvents;
