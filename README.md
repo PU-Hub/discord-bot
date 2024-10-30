@@ -1,38 +1,19 @@
-# TypeScript Discord Bot
+# PU Hub Discord Bot
 
-## Setup
+一隻校園機器人，目前還在開發階段，目標是讓生成式AI與校園結合
 
-Install dependencies with package manager
+## 目前功能
 
-```bash
-# Using npm
-npm install
+- `/food`學餐選擇: 不知道要吃什麼時，交給氣來來決定！(目前還在開發階段)
 
-# Using yarn
-yarn install
+- 問題回饋: 回報問題
 
-# Using pnpm
-pnpm install
+> -  討論串控制: 當有人發佈問題時，機器人會處理一系列的東西
+>>討論串鎖定： 將討論串鎖起來，保持其乾淨
+>>`/latex`數學： 可以讓數學式子看起來更加的易讀
 
-# Using bun
-bun install
-```
+## 預計開發計畫
 
-## Building a Slash Command
-
-You can build a Slash Command with `Command` utility class:
-
-```ts
-export default new Command({
-  builder: new SlashCommandBuilder()
-    .setName("roll")
-    .setDescription("Roll dice"),
-  defer: false,
-  ephemeral: true,
-  async execute(interaction) {
-    await interaction.reply({
-      content: `🎲 ${Math.round(Math.random() * 6)}`,
-    });
-  },
-});
-```
+1. 關於靜宜大學的各種大小事
+2. 課程提問
+3. 其他

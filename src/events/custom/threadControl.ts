@@ -13,9 +13,10 @@ export default new EventHandler({
     const thread = interaction.channel;
     if (!thread?.isThread()) return;
 
-    await thread.setArchived(true);
     await interaction.reply({
       content: '討論串鎖定',
     });
+    // await thread.setArchived(true);
+    await thread.setLocked(true);
   },
 });
