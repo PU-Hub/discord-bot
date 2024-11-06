@@ -14,9 +14,8 @@ export default new EventHandler({
     if (!thread?.isThread()) return;
 
     await interaction.reply({
-      content: '討論串鎖定',
+      content: '🔐 問題解決，已將討論串鎖定鎖定',
     });
-    // await thread.setArchived(true);
     await thread.setLocked(true);
   },
 });
