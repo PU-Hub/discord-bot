@@ -5,7 +5,7 @@ import { GatewayIntentBits } from 'discord.js';
 import type { ClientOptions } from 'discord.js';
 
 const options = {
-  intents: [GatewayIntentBits.Guilds],
+  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.MessageContent],
 } satisfies ClientOptions;
 
 const client = new ExtendedClient(options);
