@@ -6,8 +6,8 @@ import onModalSubmit from '#/core/onModalSubmit';
 
 import ready from '#/custom/ready';
 
-import threadCreate from '#/custom/threadCreate';
-import threadControl from './custom/threadControl';
-import threadDelete from './custom/threadDelete';
+import threadCreate from '#/custom/threads/threadCreate';
+import threadControl from './custom/threads/threadControl';
+import threadDelete from './custom/threads/threadDelete';
 
 export default [onButton, onCommand, onModalSubmit, ready, threadCreate, threadControl, threadDelete] as EventHandler[];

@@ -8,7 +8,7 @@ const buildFoodEmbed = (food: Shop) => {
   return new EmbedBuilder()
     .setTitle(`你抽到了${food.shopName} 的 ${a.foodName}`)
     .setTimestamp()
-    .setImage('https://blog.thebeefguy.com.hk/wp-content/uploads/2020/10/thebeefguy_photo1.png.webp')
+    .setImage('https://blog.thebeefguy.com.hk/wp-content/uploads/2020/10/thebeefguy_photo1.png')
     .setDescription(`- shop: ${food.shopName}\n- food: ${a.foodName}\n- price: ${a.foodPrice}`)
     .setFooter({ text: 'PU hub' });
 };
@@ -21,7 +21,6 @@ export default new Command({
     .setDescriptionLocalization('zh-TW', '不知道今天要吃什麼嗎？就讓我來挑吧'),
 
   async execute(interaction) {
-    // TODO: food command
     await interaction.deferReply();
     const shop = JSON.parse(readFileSync(resolve(this.cacheFolderPath, 'food', 'jiungyuan.json'), 'utf-8')) as FoodShop;
     const randomResult = shop.shop[Math.floor(Math.random() * shop.shop.length)];
