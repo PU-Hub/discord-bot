@@ -35,10 +35,6 @@ export default tseslint.config(
           },
         },
       ],
-      '@stylistic/newline-per-chained-call': [
-        'warn',
-        { ignoreChainWithDepth: 1 },
-      ],
       '@stylistic/key-spacing': ['warn'],
       '@stylistic/eol-last': ['warn'],
       '@stylistic/indent': ['warn'],
