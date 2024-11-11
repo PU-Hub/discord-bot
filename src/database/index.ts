@@ -1,9 +1,12 @@
-import { drizzle } from 'drizzle-orm/bun-sqlite';
-import { Database } from 'bun:sqlite';
-
+import { drizzle } from 'drizzle-orm/postgres-js';
+import postgres from 'postgres';
 import * as schema from './schema';
 
-const dbPath = process.env.DATABASE_URL;
-const db = new Database(dbPath, { create: true, strict: true });
+const connectionString = process.env.DATABASE_URL;
 
-export default drizzle(db, { schema });
+if (!connectionString) {
+  throw new Error('DATABASE_URL is not defined in .env');
+}
+
+export const client = postgres(connectionString, { prepare: false });
+export default drizzle(client, { schema });

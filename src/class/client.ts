@@ -5,6 +5,7 @@ import { safeWriteFileSync } from '@/utils/fs';
 import { resolve } from 'path';
 
 import commands from '$';
+import database from '@/database';
 import events from '#';
 import logger from '@/class/logger';
 
@@ -14,6 +15,7 @@ import type { Command } from '@/class/command';
 export class ExtendedClient extends Client {
   commands = new Collection<string, Command>();
   cacheFolderPath = resolve(process.env.CACHE_FOLDER ?? '.cache');
+  database = database;
 
   constructor(options: ClientOptions) {
     super(options);

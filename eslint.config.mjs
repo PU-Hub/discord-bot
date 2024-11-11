@@ -38,6 +38,7 @@ export default tseslint.config(
       '@stylistic/key-spacing': ['warn'],
       '@stylistic/eol-last': ['warn'],
       '@stylistic/indent': ['warn'],
+      '@stylistic/multiline-ternary': ['off'],
       '@stylistic/no-trailing-spaces': ['warn'],
       '@stylistic/no-multiple-empty-lines': ['warn'],
       '@typescript-eslint/no-unused-vars': ['warn'],

@@ -1,12 +1,15 @@
-import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
+import { boolean, integer, pgTable, text } from 'drizzle-orm/pg-core';
 import { resturant } from './resturant';
 
-export const menu = sqliteTable('menu', {
-  resturantId: text('resturant').references(() => resturant.id),
-  id: text('id').primaryKey(),
+export const menu = pgTable('menu', {
+  resturantId: text('resturantId').references(() => resturant.id).notNull(),
+  id: integer('id').primaryKey(),
   name: text('name').notNull(),
+  category: text('category').notNull(),
+  note: text('note').notNull(),
+  tags: text('tags').array().notNull(),
   description: text('description').notNull(),
   imageUrl: text('imageUrl'),
   price: integer('price'),
-  recommended: integer('recommended', { mode: 'boolean' }).default(false),
+  vegan: boolean('vegan').default(false),
 });
