@@ -2,6 +2,7 @@ import { bold, EmbedBuilder, SlashCommandBooleanOption, SlashCommandBuilder, Sla
 import { Command } from '@/class/command';
 import { and, count, eq, inArray, type SQLWrapper } from 'drizzle-orm';
 import { menu } from '@/database/schema';
+import logger from '@/class/logger';
 
 const locationOption = new SlashCommandStringOption()
   .setName('location')
@@ -86,6 +87,7 @@ export default new Command({
 
     while (!item || !restaurant) {
       [restaurant, item] = await getRandomMenu();
+      logger.debug(restaurant.name, item.name);
       tries++;
     }
 
