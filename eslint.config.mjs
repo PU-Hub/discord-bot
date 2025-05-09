@@ -12,8 +12,8 @@ export default tseslint.config(
     indent: 2,
     arrowParens: true,
   }),
-  ...tseslint.configs.stylisticTypeChecked,
   ...tseslint.configs.strictTypeChecked,
+  ...tseslint.configs.stylisticTypeChecked,
   {
     languageOptions: {
       parserOptions: {
