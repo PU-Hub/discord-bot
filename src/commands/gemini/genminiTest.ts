@@ -2,7 +2,7 @@ import { Command } from '@/class/command';
 import logger from '@/class/logger';
 import { env } from '@/env';
 import { withFeedbackButton } from '@/utils/feedback';
-import { GoogleGenAI } from '@google/genai';
+import { GoogleGenAI, HarmBlockThreshold, HarmCategory } from '@google/genai';
 import {
   Message,
   SlashCommandBuilder,
@@ -10,6 +10,38 @@ import {
 } from 'discord.js';
 
 const ai = new GoogleGenAI({ apiKey: env.GOOGLE_TOKEN });
+
+const tools = [
+  { googleSearch: {} },
+];
+
+const config = {
+  safetySettings: [
+    {
+      category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+      threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE, // Block most
+    },
+    {
+      category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+      threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE, // Block most
+    },
+    {
+      category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+      threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE, // Block most
+    },
+    {
+      category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+      threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE, // Block most
+    },
+  ],
+  tools,
+  responseMimeType: 'text/plain',
+  systemInstruction: [
+    {
+      text: '你現在是一個健康飲食的分析師，你的任務是依照使用者的需求去調配一個健康飲食的菜單，並且依照使用者的身心資料去做調整及建議；你的每個問題預設是使用繁體中文來回答，但如果使用者使用其他語言來詢問，你必須用使用者使用的語言來回答飲食問題。遇到不是和飲食相關的問題，一律拒絕回答。',
+    },
+  ],
+};
 
 export default new Command(
   withFeedbackButton({
@@ -40,6 +72,7 @@ export default new Command(
       try {
         const stream = await ai.models.generateContentStream({
           model: 'gemini-2.0-flash-lite-001',
+          config,
           contents: question,
         });
 
@@ -55,20 +88,19 @@ export default new Command(
           }
 
           logger.debug('should update');
+          sending = true;
 
           try {
-            await channel.sendTyping();
-
             const index = Math.floor(result.length / 2000);
             const content = result.slice(2000 * index, 2000 * (index + 1));
 
             logger.debug(`index: ${index}`);
             logger.debug(`content: ${content}`);
 
+            if (!content.length) return;
+
             if (!messages[index]) {
               logger.debug('should update');
-
-              sending = true;
 
               logger.debug('followup');
               const lastMessageContent = result.slice(2000 * (index - 1), 2000 * index);
@@ -83,8 +115,6 @@ export default new Command(
 
               return;
             }
-
-            sending = true;
 
             logger.debug('edit');
 
@@ -104,6 +134,8 @@ export default new Command(
             logger.debug('update finished');
           }
         };
+
+        await channel.sendTyping();
 
         for await (const chunk of stream) {
           if (chunk.text) {
