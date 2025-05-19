@@ -6,5 +6,6 @@ import food from '$/food';
 import latex from './latex';
 import ping from '$/ping';
 import genminiTest from './gemini/genminiTest';
+import profile from './profile';
 
-export default [ask, feedback, food, latex, ping, genminiTest] as Command[];
+export default [ask, feedback, food, latex, ping, genminiTest, profile] as Command[];
