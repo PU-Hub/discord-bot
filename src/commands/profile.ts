@@ -1,6 +1,7 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } from 'discord.js';
+import { ActionRowBuilder, EmbedBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } from 'discord.js';
 import { Command } from '@/class/command';
+import { askGemini } from '@/api/gemini/ask';
 
 export default new Command(
   {
@@ -82,6 +83,31 @@ export default new Command(
             .setThumbnail(user.avatarURL() ?? '')
             .setColor('Random')
             .setDescription('以下為您的資料，請確認無誤後再按下確認鈕')
+            .addFields(
+              { name: '😎 年齡', value: year, inline: true },
+              { name: '👩‍🦳 身高', value: height, inline: true },
+              { name: '💪 體重', value: weight, inline: true },
+              { name: '🚻 性別', value: gender, inline: true },
+              { name: '🍴 食物禁忌', value: food, inline: true },
+            ),
+        ],
+      });
+
+      const suggestion = await askGemini(`
+        以下是${user.displayName}的個人資料：
+        年齡：${year}
+        身高：${height}
+        體重：${weight}
+        性別：${gender}
+      `, '你是一位營養師，現在有一個使用者想要了解自己的健康飲食，請你依照使用者的個人資料，提供一個健康飲食的建議');
+
+      await interaction.editReply({
+        content: suggestion[0],
+        embeds: [
+          new EmbedBuilder()
+            .setThumbnail(user.avatarURL() ?? '')
+            .setColor('Random')
+            .setDescription(`${user.displayName}的個人檔案`)
             .addFields(
               { name: '😎 年齡', value: year, inline: true },
               { name: '👩‍🦳 身高', value: height, inline: true },
