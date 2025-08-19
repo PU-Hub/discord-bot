@@ -11,7 +11,7 @@ export default new Command(
       .addAttachmentOption((option) =>
         option
           .setName('input')
-          .setDescription('圖片')
+          .setDescription('要辨識的圖片，必須是 JEPG 或 PNG 且小於 10 MB 。')
           .setRequired(true),
       ),
     async execute(interaction) {
