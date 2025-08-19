@@ -67,13 +67,13 @@ export default new Command(
       const embed = new EmbedBuilder()
         .setDescription(stripIndent`
           **卡路里**： ${result.calories} 大卡
-          **蛋白質**：${result.protein} 公克
-          **脂肪**：${result.totalFat} 公克
-          - **飽和脂肪**：${result.saturatedFat} 公克
-          - **反式脂肪**：${result.transFat} 公克
-          **碳水化合物**：${result.totalCarbohydrate} 公克
-          - **糖**：${result.sugar} 公克
-          **鈉**：${result.sodium} 毫克
+          **蛋白質**： ${result.protein} 公克
+          **脂肪**： ${result.totalFat} 公克
+          - **飽和脂肪**： ${result.saturatedFat} 公克
+          - **反式脂肪**： ${result.transFat} 公克
+          **碳水化合物**： ${result.totalCarbohydrate} 公克
+          - **糖**： ${result.sugar} 公克
+          **鈉**： ${result.sodium} 毫克
         `)
         .setFooter({
           text: '此為圖片辨識後分析的結果，無法代表真實的營養成分。',
