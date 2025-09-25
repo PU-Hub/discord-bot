@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import chalk from 'chalk';
 
 const time = () => {
@@ -32,27 +29,27 @@ const time = () => {
 const pad = (label: string) => label.padEnd(5, ' ');
 
 export default {
-  trace(...args: any[]) {
+  trace(...args: unknown[]) {
     console.trace(`${time()} ${chalk.gray.italic(pad('Trace'))}`, ...args);
   },
-  debug(message: string, ...args: any[]) {
+  debug(message: string, ...args: unknown[]) {
     console.debug(
       `${time()} ${chalk.cyan.italic(pad('Debug'))}`,
       chalk.gray.italic(message),
       ...args,
     );
   },
-  info(message: string, ...args: any[]) {
+  info(message: string, ...args: unknown[]) {
     console.info(chalk.blue(`${time()} ${pad('Info')}`), message, ...args);
   },
-  warn(message: string, ...args: any[]) {
+  warn(message: string, ...args: unknown[]) {
     console.warn(
       `${time()} ${chalk.yellow.bold(pad('Warn'))}`,
       message,
       ...args,
     );
   },
-  error(message: string, ...args: any[]) {
+  error(message: string, ...args: unknown[]) {
     console.error(
       `${time()} ${chalk.red.bold(pad('Error'))}`,
       chalk.bold(message),

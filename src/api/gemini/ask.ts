@@ -1,5 +1,7 @@
 import { GoogleGenAI, HarmBlockThreshold, HarmCategory } from '@google/genai';
+
 import { env } from '@/env';
+
 import logger from '@/class/logger';
 
 export const askGemini = async (question: string, request: string) => {

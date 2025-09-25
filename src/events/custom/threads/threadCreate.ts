@@ -1,5 +1,8 @@
-import { ActionRowBuilder, ButtonBuilder, ButtonStyle, Colors, EmbedBuilder, Events, GuildMember, inlineCode, unorderedList, type AnyThreadChannel } from 'discord.js';
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, Colors, EmbedBuilder, Events, GuildMember, inlineCode, unorderedList } from 'discord.js';
+
 import { EventHandler } from '@/class/event';
+
+import type { AnyThreadChannel } from 'discord.js';
 
 const embedBuilder = (thread: AnyThreadChannel, owner: GuildMember, firstMessage: string | undefined) => new EmbedBuilder()
   .setColor(Colors.Blue)

@@ -1,13 +1,6 @@
-import type {
-  AnySelectMenuInteraction,
-  ApplicationCommandOptionChoiceData,
-  AutocompleteInteraction,
-  Awaitable,
-  ButtonInteraction,
-  ChatInputCommandInteraction,
-  ModalSubmitInteraction,
-} from 'discord.js';
+import type { AnySelectMenuInteraction, ApplicationCommandOptionChoiceData, AutocompleteInteraction, Awaitable, ButtonInteraction, ChatInputCommandInteraction, ModalSubmitInteraction } from 'discord.js';
 import type { SharedSlashCommand } from '@discordjs/builders';
+
 import type { ExtendedClient } from '@/class/client';
 
 interface CommandHandlers {

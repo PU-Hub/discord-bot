@@ -1,7 +1,8 @@
-import { boolean, integer, pgTable, text } from 'drizzle-orm/pg-core';
-import { resturant } from './resturant';
+import { pgTableCreator } from 'drizzle-orm/pg-core';
 
-export const menu = pgTable('menu', {
+const createTable = pgTableCreator((name) => `puhub_${name}`);
+
+export const menu = createTable('menu', ({ boolean, integer, text }) => ({
   resturantId: text('resturantId').references(() => resturant.id).notNull(),
   id: integer('id').primaryKey(),
   name: text('name').notNull(),
@@ -12,4 +13,10 @@ export const menu = pgTable('menu', {
   imageUrl: text('imageUrl'),
   price: integer('price'),
   vegan: boolean('vegan').default(false),
-});
+}));
+
+export const resturant = createTable('resturant', ({ text }) => ({
+  id: text('id').primaryKey(),
+  name: text('name').notNull(),
+  location: text('location').notNull(),
+}));

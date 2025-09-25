@@ -1,15 +1,17 @@
 import { Client, Collection } from 'discord.js';
 import { existsSync, readFileSync } from 'fs';
 import { createHash } from 'crypto';
-import { safeWriteFileSync } from '@/utils/fs';
 import { resolve } from 'path';
 
-import commands from '$';
+import { safeWriteFileSync } from '@/utils/fs';
+
+import commands from '@/commands';
 import database from '@/database';
-import events from '#';
+import events from '@/events';
 import logger from '@/class/logger';
 
 import type { ClientOptions } from 'discord.js';
+
 import type { Command } from '@/class/command';
 
 export class ExtendedClient extends Client {

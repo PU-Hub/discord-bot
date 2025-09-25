@@ -1,40 +1,41 @@
 {
   "name": "pu-hub-discord-bot",
+  "main": "src/index.ts",
   "module": "dist/index.ts",
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
-    "build": "rollup -c rollup.config.mjs",
-    "lint": "eslint \"src/**/*.{js,ts}\" --fix"
+    "dev": "bun --hot src/index.ts",
+    "lint": "eslint \"src/**/*.{js,ts}\" --fix",
+    "build": "bun build src/index.ts --outdir ./dist --target bun --splitting",
+    "start": "bun dist/index.js",
+    "db:migrate": "drizzle-kit migrate",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "db:pull": "drizzle-kit pull"
   },
   "dependencies": {
-    "@google/genai": "^1.15.0",
-    "arktype": "^2.1.20",
-    "better-sqlite3": "^12.2.0",
-    "chalk": "^5.6.0",
+    "@google/genai": "^1.20.0",
+    "arktype": "^2.1.22",
+    "better-sqlite3": "^12.4.1",
+    "chalk": "^5.6.2",
     "common-tags": "^1.8.2",
-    "discord.js": "^14.21.0",
-    "dotenv": "^17.2.1",
-    "drizzle-orm": "^0.44.4",
+    "discord.js": "^14.22.1",
+    "dotenv": "^17.2.2",
+    "drizzle-orm": "^0.44.5",
     "postgres": "^3.4.7",
-    "sharp": "^0.34.3"
+    "sharp": "^0.34.4"
   },
   "devDependencies": {
-    "@eslint/js": "^9.33.0",
-    "@rollup/plugin-alias": "^5.1.1",
-    "@rollup/plugin-json": "^6.1.0",
-    "@rollup/plugin-terser": "^0.4.4",
-    "@rollup/plugin-typescript": "^12.1.4",
-    "@stylistic/eslint-plugin": "^5.2.3",
+    "@kamiya4047/eslint-plugin-pretty-import": "^0.1.6",
+    "@stylistic/eslint-plugin": "^5.4.0",
     "@types/bun": "latest",
     "@types/common-tags": "^1.8.4",
-    "@types/eslint__js": "^9.14.0",
     "drizzle-kit": "^0.31.4",
-    "eslint": "^9.33.0",
-    "rollup": "^4.46.3",
-    "tsx": "^4.20.4",
-    "typescript-eslint": "^8.40.0"
+    "eslint": "^9.36.0",
+    "jiti": "^2.6.0",
+    "tsx": "^4.20.5",
+    "typescript-eslint": "^8.44.1"
   },
   "peerDependencies": {
     "typescript": "^5.9.2"

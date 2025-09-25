@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  discord-bot:
+    build: .
+    container_name: discord-bot
+    restart: 'on-failure:5'
+    environment:
+      NODE_ENV: production
+    env_file:
+      - .env
+    volumes:
+      - ./data:/usr/src/app/data
+      - ./logs:/usr/src/app/logs
+    networks:
+      - bot-network
+
+networks:
+  bot-network:
+    driver: bridge

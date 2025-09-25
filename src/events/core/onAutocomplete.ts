@@ -1,4 +1,5 @@
 import { Events } from 'discord.js';
+
 import { EventHandler } from '@/class/event';
 
 export default new EventHandler({
